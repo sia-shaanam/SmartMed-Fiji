@@ -1,0 +1,556 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background:  #f4f4f4;
+  
+}
+
+/* Base styling */
+.container {
+  display: flex;
+}
+
+.nav-bar {
+  position: relative;
+  background-color:   #003366;
+  transition: width 0.3s ease; /* Smooth transition */
+  position: fixed; /* Fixes the sidebar to the left */
+  width: 200px; /* Set the width of the sidebar */
+  height: 100%;
+  overflow: hidden;
+}
+
+.nav-bar.collapsed {
+  width: 80px; /* Collapse to 80px when collapsed */
+  position: fixed;
+ 
+}
+.nav-bar ul {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-bar li {
+  list-style: none;
+  padding:4px;
+}
+
+.nav-bar a {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;
+  color:  white;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-bar a:hover {
+  background-color:  #003366;
+  color: white;
+}
+
+.nav-bar .fas {
+  margin-right: 10px;
+  font-size: 20px;
+  transition: margin-right 0.3s; /* Animate the margin */
+}
+
+.nav-item {
+  transition: opacity 0.3s;
+}
+
+.nav-bar.collapsed .nav-item {
+  opacity: 0; 
+  width: 0;
+}
+
+.nav-bar.collapsed .fas {
+  margin-right: 0; /* Remove the margin for icons */
+}
+
+.nav-bar.collapsed a {
+  justify-content: center; /* Center icons when collapsed */
+  padding: 10px; /* Remove extra padding */
+}
+
+.dashboard {
+  padding: 20px;
+  flex: 1;
+  margin-left: 200px; /* Leave space for the sidebar */
+  width: calc(100% - 250px); /* Take up the rest of the width */
+  height: 100vh; /* Full height viewport */
+  overflow-y: auto;
+}
+.dashboard.collapsed {
+  margin-left: 80px; /* Adjust main content when sidebar is collapsed */
+  width: calc(100% - 80px); /* Take up the rest of the width when sidebar is collapsed */
+  transition:ease-in 2ms;
+} 
+.main {
+  padding: 20px;
+  flex: 1;
+  margin-left: 200px; /* Leave space for the sidebar */
+  width: calc(100% - 250px); /* Take up the rest of the width */
+  height: 100vh; /* Full height viewport */
+  overflow-y: auto;
+}
+.main.collapsed {
+  margin-left: 80px; /* Adjust main content when sidebar is collapsed */
+  width: calc(100% - 80px); /* Take up the rest of the width when sidebar is collapsed */
+  transition:ease-in 2ms;
+}
+/* Logo styling */
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color:  #003366; /* Background color similar to navbar */
+}
+
+.logo img {
+  height: 40px; /* Adjust the height of the logo */
+  width: auto;  /* Maintain the aspect ratio of the image */
+  border-radius: 50%; /* Make it circular if the image allows */
+  margin-left: 10px; /* Add spacing between the button and image */
+}
+
+#toggle-btn {
+  font-size: 24px; /* Icon size */
+  color: #fff; /* Button color */
+  background: none; /* Remove any default button styling */
+  border: none;
+  cursor: pointer;
+  outline: none; /* Remove outline when clicked */
+}
+
+.logo span {
+  display: flex;
+  align-items: center;
+}
+
+.logo span img {
+  display: block;
+}
+
+
+
+
+/* Dropdown Button Style */
+.main-top .dropdown .dropbtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.main-top .dropdown .dropbtn i {
+  font-size: 24px;
+}
+
+/* Dropdown Content */
+.main-top .dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0; /* Align dropdown to the right */
+  background-color: #f9f9f9;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.main-top .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.main-top .dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown on hover */
+.main-top .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+  /* Styling for the dropdown and hover effect */
+  .custom-dropdown-menu {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.custom-dropdown-toggle {
+    text-decoration: none;
+    color: black;
+    padding: 2px;
+    display: inline-block;
+}
+
+/* Hide the dropdown by default */
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0; /* Align dropdown to the right */
+  background-color: #f9f9f9;
+  min-width: 150px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+    
+}
+
+/* Show the dropdown on hover */
+.custom-dropdown-menu:hover .custom-dropdown-content {
+    display: block;
+}
+
+.custom-dropdown-item {
+    padding: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.custom-dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.custom-media {
+    display: flex;
+    align-items: center;
+}
+
+.custom-avatar img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.custom-media-body {
+    padding-left: 10px;
+}
+
+.custom-media-heading {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.custom-media-meta {
+    font-size: 12px;
+    color: rgb(236, 15, 15);
+}
+/* Toggle button */
+#toggle-btn {
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: #e7dfdf;
+  cursor: pointer;
+}
+
+#toggle-btn i {
+  font-size: 1.5em;
+}
+
+/* Dashboard Content */
+.main-skills {
+  display: flex;
+  flex-wrap: wrap; /* Allows the cards to wrap to new rows if needed */
+  margin-top: 20px;
+  gap: 20px; /* Space between the cards */
+  justify-content: space-between; /* Aligns the cards evenly across the row */
+}
+
+.main-skills .card {
+  width: calc(10% - 20px); /* Each card takes 25% width of the container */
+  margin: 10px;
+  background: #fff;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 calc(10% - 20px); /* Flexible for responsiveness */
+}
+
+.main-skills .card:hover {
+  transform: translateY(-10px); /* Moves the card upwards */
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.dashboard  .card h3 {
+  margin: 10px;
+  text-transform: capitalize;
+}
+
+.dashboard  .card p {
+  font-size: 12px;
+}
+
+.dashboard  .card button {
+  background: orangered;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.dashboard  .card button:hover {
+  background: rgba(223, 70, 15, 0.856);
+  transform: scale(1.05); /* Slightly enlarges the button */
+}
+
+.dashboard .card i {
+  font-size: 2rem;
+  color:     #003366;
+}
+
+
+
+
+/* Courses */
+.main-course {
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+
+.course-box {
+  width: 100%;
+  height: 300px;
+  padding: 10px 10px 30px 10px;
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.course-box ul {
+  list-style: none;
+  display: flex;
+}
+
+.course-box ul li {
+  margin: 10px;
+  color: gray;
+  cursor: pointer;
+}
+
+.course-box ul .active {
+  color: #000;
+  border-bottom: 1px solid #000;
+}
+
+.course-box .course {
+  display: flex;
+}
+
+.box {
+  width: 33%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background: rgb(235, 233, 233);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease; /* Added transition */
+}
+
+.box:hover {
+  background-color: rgba(200, 200, 200, 0.5); /* Change background on hover */
+}
+
+.box p {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.box button {
+  background: #000;
+  color: #fff;
+  padding: 7px 10px;
+  border-radius: 10px;
+  margin-top: 3rem;
+  cursor: pointer;
+  transition: background 0.3s ease; /* Added transition */
+}
+
+.box button:hover {
+  background: rgba(0, 0, 0, 0.842);
+}
+
+.box i {
+  font-size: 7rem;
+  float: right;
+  margin: -20px 20px 20px 0;
+}
+
+.html {
+  color: rgb(25, 94, 54);
+}
+
+.css {
+  color: rgb(104, 179, 35);
+}
+
+.js {
+  color: rgb(28, 98, 179);
+}
+
+
+/* Responsive breakpoints */
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav-bar {
+    width: 100%; /* Full width on small screens */
+    height: auto; /* Allow height to be auto on small screens */
+  }
+
+  .nav-bar.collapsed {
+    width: 60px; /* Further collapse for small screens */
+  }
+
+  .nav-bar a {
+    justify-content: center; /* Center icons for smaller screens */
+  }
+
+  .nav-bar .fas {
+    font-size: 18px; /* Slightly smaller icons */
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-bar {
+    position: absolute; /* Position absolutely for mobile */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it’s on top */
+  }
+
+  .nav-bar.collapsed {
+    display: none; /* Hide collapsed nav bar for extra small devices */
+  }
+
+  .nav-bar a {
+    padding: 10px 5px; /* Reduced padding for mobile */
+  }
+}
+
+/* Optional: Add styles for the main content for better mobile experience */
+.main {
+  flex-grow: 1; /* Allow the main section to grow and take remaining space */
+  padding: 20px; /* Add padding for content */
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 10px; /* Reduced padding on smaller devices */
+  }
+}
+/* Large screens: 4 cards per row */
+@media (min-width: 1024px) {
+  .main-skills .card {
+    width: calc(25% - 20px); /* 4 cards in a row */
+  }
+}
+
+/* Medium screens (tablets, 768px - 1023px): 2 cards per row */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .main-skills .card {
+    width: calc(50% - 20px); /* 2 cards in a row */
+  }
+}
+
+/* Small screens (mobile, max-width 767px): cards stack vertically */
+@media (max-width: 767px) {
+  .main-skills {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center the cards */
+  }
+
+  .main-skills .card {
+    width: 100%; /* Each card takes full width */
+    max-width: 300px; /* Optional: Limit max width for a cleaner look */
+  }
+}
+
+/* Medium screens (tablets, 768px - 1023px): 2 course boxes per row */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .box {
+    width: calc(50% - 20px); /* 2 course boxes per row */
+  }
+}
+
+/* Small screens (mobile, max-width 767px): courses stack vertically */
+@media (max-width: 767px) {
+  .box {
+    width: 100%; /* Each course box takes full width */
+    margin: 20px 0; /* Add margin between the course boxes */
+  }
+
+  .course-box ul {
+    justify-content: center; /* Center the course categories */
+    flex-wrap: wrap; /* Allow categories to wrap on smaller screens */
+  }
+}
+
+
+
+/*calender*/
+ #calendar {
+            max-width: 600px; /* Smaller calendar width */
+            margin: 0 auto;
+        }
+
+        /* Style for the popup (modal) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; 
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px; /* Max width of popup */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }

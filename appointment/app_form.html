@@ -1,0 +1,190 @@
+
+<?php
+// Database connection
+$servername = "localhost";  // Update with your database server
+$username = "root";         // Update with your database username
+$password = "";             // Update with your database password
+$dbname = "appointments_db"; // Update with your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data and sanitize inputs
+    $full_name = mysqli_real_escape_string($conn, $_POST['name']);
+    $dob = mysqli_real_escape_string($conn, $_POST['dob']);
+    $appointment_date = mysqli_real_escape_string($conn, $_POST['appointment_date']);
+    $appointment_time = mysqli_real_escape_string($conn, $_POST['appointment_time']);
+    $reason = mysqli_real_escape_string($conn, $_POST['reason']);
+
+    // Prepare SQL statement to insert data
+    $sql = "INSERT INTO appointments (full_name, dob, appointment_date, appointment_time, reason) 
+            VALUES ('$full_name', '$dob', '$appointment_date', '$appointment_time', '$reason')";
+
+    // Execute query and check for success
+    if ($conn->query($sql) === TRUE) {
+        echo "Appointment booked successfully!";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Close the database connection
+$conn->close();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking Popup</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Popup form container */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Popup content styling */
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        /* Form field styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        /* Submit button styling */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Close button styling */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .close-btn:hover {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+
+<!-- The Popup Form -->
+<div id="appointmentPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <h2>Book Your First Appointment</h2>
+        <form action="/submit_appointment" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label for="appointment_date">Appointment Date:</label>
+                <input type="date" id="appointment_date" name="appointment_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="appointment_time">Appointment Time:</label>
+                <input type="time" id="appointment_time" name="appointment_time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="reason">Reason for Visit:</label>
+                <textarea id="reason" name="reason" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Book Appointment</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Check if the user has already visited the appointment form
+    document.addEventListener("DOMContentLoaded", function () {
+        const hasVisited = localStorage.getItem("hasVisited");
+        
+        // Show the pop-up only if it's the user's first time visiting
+        if (!hasVisited) {
+            document.getElementById('appointmentPopup').style.display = 'flex';
+            localStorage.setItem("hasVisited", "true");
+        }
+
+        // Close button functionality
+        document.getElementById('closePopup').addEventListener('click', function () {
+            document.getElementById('appointmentPopup').style.display = 'none';
+        });
+    });
+</script>
+
+</body>
+</html>

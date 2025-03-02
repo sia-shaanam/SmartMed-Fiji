@@ -1,0 +1,181 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SmartMed Fiji | Doctors Dashboard</title>
+  <link rel="stylesheet" href="../css/doc_dash_styles.css" />
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<style>
+
+    .con {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 50px;
+    }
+
+    /* Sidebar for the different sickness prescriptions */
+    .prescription-examples {
+        width: 25%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .prescription-examples h3 {
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .prescription-examples p {
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    /* Prescription form container */
+    .prescription-form-container {
+        width: 40%;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .prescription-form-container h1 {
+        margin-bottom: 20px;
+        color: #007bff;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+<body>
+  <div class="container">
+  <nav class="nav-bar">
+      <ul>
+      <div class="logo">
+          <button id="toggle-btn"><i class="fas fa-bars"></i></button>
+          <span><img src="../img/logo.jpg" alt=""></span>
+        </div>
+        <li><a href="../doc_dash.php"><i class="fas fa-tachometer-alt"></i><span class="nav-item">Dashboard</span></a></li>
+        <li><a href="../app/doc_app_index.php"><i class="fas fa-calendar-check"></i><span class="nav-item">Appointments</span></a></li>
+        <li><a href="../ehr/ehr_main.php"><i class="fas fa-file-medical"></i><span class="nav-item">EHR</span></a></li>
+        <li><a href="pres_index.html"><i class="fas fa-syringe"></i><span class="nav-item">Add Prescription</span></a></li>
+        <li><a href="../doc_list/profile.php"><i class="fas fa-chart-line"></i><span class="nav-item">Profile</span></a></li>
+        <li><a href="../mess/mass_index.php"><i class="fas fa-video"></i><span class="nav-item">Telemedicine</span></a></li>
+        <li><a href="../bill/bill_index.php"><i class="fas fa-file-invoice-dollar"></i><span class="nav-item">Billings</span></a></li>
+        <li><a href="../logout.php" class="logout"><i class="fas fa-sign-out-alt"></i><span class="nav-item">Log out</span></a></li>
+     </ul>
+    </nav>
+
+    <section class="main">
+    
+        <div class="con">
+            <!-- Left side for prescriptions examples -->
+            <div class="prescription-examples">
+                <h3>Prescriptions for Fever</h3>
+                <p>Take paracetamol 500mg every 6 hours. Drink plenty of fluids and rest.</p>
+    
+                <h3>Prescriptions for Cough</h3>
+                <p>Use a cough syrup like Benadryl 2 teaspoons, 3 times a day. Stay hydrated.</p>
+    
+                <h3>Prescriptions for Heart Attack</h3>
+                <p>Aspirin 325mg immediately, followed by urgent medical attention.</p>
+    
+                <h3>Prescriptions for Flu</h3>
+                <p>Take antiviral medication like Tamiflu. Rest and drink plenty of fluids.</p>
+    
+                <h3>Prescriptions for Asthma</h3>
+                <p>Inhaler (Albuterol) 2 puffs every 4-6 hours as needed. Use a preventive inhaler if prescribed.</p>
+            </div>
+    
+            <!-- Center prescription form -->
+            <div class="prescription-form-container">
+                <h1>Prescription</h1>
+                <form action="submit_prescription.php" method="POST">
+                    <label for="patient_id">Patient ID:</label>
+                    <input type="text" id="patient_id" name="patient_id" required><br><br>
+                    
+                    <label for="doctor_id">Doctor ID:</label>
+                    <input type="text" id="doctor_id" name="doctor_id" required><br><br>
+                    
+                    <label for="prescription">Prescription:</label><br>
+                    <textarea id="prescription" name="prescription" rows="4" cols="50" required></textarea><br><br>
+                    
+                    <input type="submit" value="Submit Prescription">
+                </form>
+            </div>
+    
+            <!-- Right side for more prescriptions examples -->
+            <div class="prescription-examples">
+                <h3>Prescriptions for Diabetes</h3>
+                <p>Take Metformin 500mg once a day. Monitor blood sugar levels regularly.</p>
+    
+                <h3>Prescriptions for Hypertension</h3>
+                <p>Lisinopril 10mg daily. Monitor blood pressure regularly.</p>
+    
+                <h3>Prescriptions for Allergies</h3>
+                <p>Take antihistamines such as Cetirizine 10mg once daily.</p>
+    
+                <h3>Prescriptions for Headache</h3>
+                <p>Ibuprofen 400mg every 4-6 hours as needed. Avoid stress and stay hydrated.</p>
+    
+                <h3>Prescriptions for Stomach Ache</h3>
+                <p>Antacid (Mylanta) 2 teaspoons after meals. Drink water and eat a bland diet.</p>
+            </div>
+        </div>
+
+    </section>
+  </div>
+
+  <script>
+   document.getElementById('toggle-btn').addEventListener('click', function() {
+  const navBar = document.querySelector('.nav-bar');
+  const mainContent = document.querySelector('.main');
+  
+  // Toggle the 'collapsed' class
+  navBar.classList.toggle('collapsed');
+  mainContent.classList.toggle('collapsed');
+});
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+ 
+    .profile-header {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+    
+    .profile-photo img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+    
+    .profile-details h2 {
+        margin: 0;
+        font-size: 22px;
+    }
+    
+    .tabs {
+        display: flex;
+        margin-bottom: 20px;
+    }
+    
+    .tab {
+        padding: 10px 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    
+    .tab.active {
+        background-color: #d53f8c;
+        color: #fff;
+    }
+    
+    .profile-info {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .profile-info h3 {
+        margin-top: 0;
+    }
+    
+    .used-drugs table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+    
+    .used-drugs th,
+    .used-drugs td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    
+    .used-drugs th {
+        background-color: #f3f4f6;
+        text-align: left;
+    }
+    
+    .checkbox-group label {
+        display: block;
+        margin-top: 10px;
+    }
+    
+</style>
+<body>
+  
+       
+        <main class="profile-content">
+            <header class="profile-header">
+                <div class="profile-photo">
+                    <img src="profile-pic.png" alt="Peter Viscaal">
+                </div>
+                <div class="profile-details">
+                    <h2>Peter Viscaal</h2>
+                    <p>Gender: Male | Age: 20</p>
+                    <p>Height: 6'2"</p>
+                    <p>Phone: 289-367-0297</p>
+                    <p>Email: kuhn_isabel@king.info</p>
+                    <p>Address: 85 Mile Drive, Los Angeles, CA</p>
+                </div>
+            </header>
+            <div class="tabs">
+                <button class="tab active">General</button>
+                <button class="tab">Orders</button>
+                <button class="tab">Family</button>
+                <button class="tab">Copays</button>
+                <button class="tab">Messages</button>
+                <button class="tab">Logs</button>
+            </div>
+            <section class="profile-info">
+                <div class="personal-info">
+                    <h3>Personal Details</h3>
+                    <p><strong>Birthdate:</strong> 03/05/1996</p>
+                    <p><strong>Pickup:</strong> Default</p>
+                    <p><strong>Drug Line 1:</strong> Brand</p>
+                    <p><strong>Drug Line 2:</strong> Generic</p>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Snap Caps Required</label>
+                        <label><input type="checkbox"> Compliance Calendar on Label</label>
+                    </div>
+                </div>
+                <div class="used-drugs">
+                    <h3>Used Drugs</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Brand Name</th>
+                                <th>Generic Name</th>
+                                <th>Strength</th>
+                                <th>Pack</th>
+                                <th>Manufacturer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Apo-Ciproflox</td>
+                                <td>Ciprofloxacin Hydrochloride</td>
+                                <td>250mg</td>
+                                <td>100</td>
+                                <td>Apotex Inc.</td>
+                            </tr>
+                            <!-- Additional rows for more drugs -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="allergies">
+                    <h3>Allergies</h3>
+                    <p>Penicillin - High</p>
+                    <p>Tramadol - Medium</p>
+                </div>
+                <div class="notes">
+                    <h3>Notes</h3>
+                    <p>Knee pain, Headache. Last time he looked sick.</p>
+                </div>
+            </section>
+        </main>
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+const sections = document.querySelectorAll('.profile-info section');
+
+tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+    });
+});
+
+    </script>
+</body>
+</html>
+

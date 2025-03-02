@@ -1,0 +1,113 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Message</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS for styling -->
+</head>
+<style>
+
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+/* Centering the message container */
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Card styles */
+.message-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Doctor name and message styling */
+.message-sender {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.message-content {
+    font-size: 16px;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+/* Timestamp styling */
+.message-timestamp {
+    font-size: 12px;
+    color: #95a5a6;
+    text-align: right;
+}
+
+/* Button container for chat */
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Chat button style */
+.chat-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Chat button hover effect */
+.chat-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Chat button active effect */
+.chat-btn:active {
+    background-color: #004085;
+    transform: translateY(0);
+}
+</style>
+<body>
+    <div class="message-container">
+        <?php if ($latest_message): ?>
+            <div class="message-card">
+                <p class="message-sender">Message from Dr. <?php echo htmlspecialchars($latest_message['name']); ?></p>
+                <p class="message-content"><?php echo htmlspecialchars($latest_message['message']); ?></p>
+                <p class="message-timestamp">Sent at: <?php echo htmlspecialchars($latest_message['sent_at']); ?></p>
+
+                <!-- Add chat button -->
+                <div class="actions">
+                    <button class="chat-btn" onclick="window.location.href='chat.php?patient_id=<?php echo $patient_id; ?>&doctor_id=<?php echo htmlspecialchars($latest_message['user_id']); ?>'">Chat with Doctor</button>
+                </div>
+            </div>
+        <?php else: ?>
+            <p>No messages found for this patient.</p>
+        <?php endif; ?>
+    </div>
+</body>
+</html>

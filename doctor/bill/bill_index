@@ -1,0 +1,98 @@
+<?php
+// Database connection
+include('smf_db_conn.php');
+
+
+// Fetch all existing appointments to populate the dropdown
+$sql = "SELECT appointment_id, patient_name, appointment_date FROM appointments";
+$result = $conn->query($sql);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Appointment for Billing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .bill-details {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Billing System - Smart Med Fiji</h1>
+        
+        <!-- Form for selecting appointment -->
+        <form action="billing.php" method="POST">
+            <label for="appointment_id">Select Appointment:</label>
+            <select name="appointment_id" id="appointment_id" required>
+                <option value="">--Select Appointment--</option>
+                <?php
+                if ($result->num_rows > 0) {
+                    // Loop through all appointments and create options in the dropdown
+                    while($row = $result->fetch_assoc()) {
+                        echo "<option value='" . $row['appointment_id'] . "'>" 
+                             . $row['appointment_id'] . " - " . $row['patient_name'] . " (Date: " . $row['appointment_date'] . ")"
+                             . "</option>";
+                    }
+                } else {
+                    echo "<option value=''>No appointments available</option>";
+                }
+                ?>
+            </select>
+            <button type="submit">Retrieve Bill</button>
+        </form>
+
+        <div id="bill-details" class="bill-details">
+            <?php if (isset($_GET['appointment_id'])): ?>
+                <?php include 'billing.php'; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</body>
+</html>
+
+<?php
+$conn->close();
+?>

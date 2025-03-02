@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f8;
+            color: #333;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #0b7ef1;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form-section {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .form-section h2 {
+            color: #88acbf;
+            border-bottom: 2px solid #34495e;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .form-group div, .form-group textarea {
+            flex: 1;
+            margin: 0 10px 10px 0;
+            min-width: calc(50% - 10px);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-group input[type="text"], input[type="email"], input[type="tel"], input[type="date"],
+        textarea {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #ecf0f1;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-group label {
+            margin-right: 15px;
+        }
+
+        .form-group.radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        input[type="submit"] {
+            background-color: #1abc9c;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #16a085;
+        }
+
+        .section-title {
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Patient Registration Form</h1>
+        <p>Thank you for applying to our practice. Please complete this patient registration form, and a doctor will contact you shortly.</p>
+        <form action="submit.php" method="post">
+            <!-- Patient Information -->
+            <div class="form-section">
+                <h2>Patient Information</h2>
+                <div class="form-group">
+                    <div>
+                        <label for="firstName">First Name*</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div>
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    <div>
+                        <label for="preferredName">Preferred Name</label>
+                        <input type="text" id="preferredName" name="preferredName">
+                    </div>
+                    <div>
+                        <label for="dob">Date of Birth*</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <div>
+                        <label for="patientIdentifier">Patient Identifier (If known)</label>
+                        <input type="text" id="patientIdentifier" name="patientIdentifier">
+                    </div>
+                    <div>
+                        <label for="gender">Gender*</label>
+                        <input type="text" id="gender" name="gender" required>
+                    </div>
+                    <div>
+                        <label for="preferredPronouns">Preferred Pronouns</label>
+                        <input type="text" id="preferredPronouns" name="preferredPronouns">
+                    </div>
+                    <div>
+                        <label for="maritalStatus">Marital Status*</label>
+                        <input type="text" id="maritalStatus" name="maritalStatus" required>
+                    </div>
+                    <div>
+                        <label for="address">Address*</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                    <div class="full-width">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div class="full-width">
+                        <label for="phone">Preferred Phone Number*</label>
+                        <input type="tel" id="phone" name="phone" placeholder="### ### ####" required>
+                    </div>
+                    <div class="full-width">
+                        <label for="contactPreference">How do you prefer we contact you?</label>
+                        <input type="text" id="contactPreference" name="contactPreference">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Emergency Contact -->
+            <div class="form-section">
+                <h2>Emergency Contact</h2>
+                <div class="form-group">
+                    <div>
+                        <label for="emergencyContactName">Full Name*</label>
+                        <input type="text" id="emergencyContactName" name="emergencyContactName" required>
+                    </div>
+                    <div>
+                        <label for="relationship">Relationship*</label>
+                        <input type="text" id="relationship" name="relationship" required>
+                    </div>
+                    <div>
+                        <label for="emergencyContactNumber">Contact Number*</label>
+                        <input type="tel" id="emergencyContactNumber" name="emergencyContactNumber" placeholder="### ### ####" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health and Medical Information -->
+            <div class="form-section">
+                <h2>Health and Medical Information</h2>
+                <div class="form-group">
+                    <label for="primaryPhysician">Primary Care Physician</label>
+                    <input type="text" id="primaryPhysician" name="primaryPhysician">
+                </div>
+                <div class="form-group">
+                    <label for="primaryPhysicianAddress">Primary Care Physician Address</label>
+                    <input type="text" id="primaryPhysicianAddress" name="primaryPhysicianAddress">
+                </div>
+                <div class="form-group">
+                    <label for="primaryPhysicianContact">Primary Care Physician Contact Number</label>
+                    <input type="tel" id="primaryPhysicianContact" name="primaryPhysicianContact" placeholder="### ### ####">
+                </div>
+                <div class="form-group">
+                    <label for="medicalConditions">Please list any medical conditions</label>
+                    <textarea id="medicalConditions" name="medicalConditions"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="medications">Please list any current medications</label>
+                    <textarea id="medications" name="medications"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="visitReason">Reason for today’s visit?</label>
+                    <textarea id="visitReason" name="visitReason"></textarea>
+                </div>
+                <div class="form-group radio-group">
+                    <label for="pregnancy">For Women: Are you pregnant?</label>
+                    <label><input type="radio" id="pregnancyYes" name="pregnancy" value="Yes"> Yes</label>
+                    <label><input type="radio" id="pregnancyNo" name="pregnancy" value="No"> No</label>
+                </div>
+                <div class="form-group">
+                    <label for="pregnancyDuration">*If Yes, for how long?</label>
+                    <input type="text" id="pregnancyDuration" name="pregnancyDuration">
+                </div>
+            </div>
+
+            <!-- Family History -->
+            <div class="section-title">Family History</div>
+            <div class="form-group">
+                <label for="allergies">Allergies</label>
+                <textarea id="allergies" name="allergies"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="previousInjuries">Previous injuries, surgeries, or treatments and their dates</label>
+                <textarea id="previousInjuries" name="previousInjuries"></textarea>
+            </div>
+
+            <!-- Insurance Information -->
+            <div class="section-title">Insurance Information (If Applicable)</div>
+            <div class="form-group">
+                <label for="insuranceCarrier">Insurance Carrier</label>
+                <input type="text" id="insuranceCarrier" name="insuranceCarrier">
+            </div>
+            <div class="form-group">
+                <label for="insurancePlan">Insurance Plan</label>
+                <input type="text" id="insurancePlan" name="insurancePlan">
+            </div>
+            <div class="form-group">
+                <label for="insuranceContact">Contact Number</label>
+               
+                <input type="tel" id="insuranceContact" name="insuranceContact" placeholder="### ### ####">
+            </div>
+            <div class="form-group">
+                <label for="policyNumber">Policy Number</label>
+                <input type="text" id="policyNumber" name="policyNumber">
+            </div>
+            <div class="form-group">
+                <label for="groupNumber">Group Number</label>
+                <input type="text" id="groupNumber" name="groupNumber">
+            </div>
+            <div class="form-group">
+                <label for="ssn">Social Security Number</label>
+                <input type="text" id="ssn" name="ssn">
+            </div>
+
+            <!-- Employment Status -->
+            <div class="section-title">Employment Status</div>
+            <div class="form-group radio-group">
+                <label><input type="radio" id="employed" name="employmentStatus" value="Employed"> Employed</label>
+                <label><input type="radio" id="selfEmployed" name="employmentStatus" value="Self Employed"> Self Employed</label>
+                <label><input type="radio" id="unemployed" name="employmentStatus" value="Unemployed"> Unemployed</label>
+                <label><input type="radio" id="otherEmployment" name="employmentStatus" value="Other"> Other</label>
+            </div>
+            <div class="form-group">
+                <label for="occupation">Occupation</label>
+                <input type="text" id="occupation" name="occupation">
+            </div>
+            <div class="form-group">
+                <label for="industry">Industry</label>
+                <input type="text" id="industry" name="industry">
+            </div>
+            <div class="form-group">
+                <label for="companyName">Company Name</label>
+                <input type="text" id="companyName" name="companyName">
+            </div>
+            <div class="form-group">
+                <label for="companyAddress">Company Address</label>
+                <input type="text" id="companyAddress" name="companyAddress">
+            </div>
+            <div class="form-group">
+                <label for="companyCity">City</label>
+                <input type="text" id="companyCity" name="companyCity">
+            </div>
+            <div class="form-group">
+                <label for="companyState">State</label>
+                <input type="text" id="companyState" name="companyState">
+            </div>
+            <div class="form-group">
+                <label for="companyZip">Zip Code</label>
+                <input type="text" id="companyZip" name="companyZip">
+            </div>
+
+            <!-- New Patient Questionnaire -->
+            <div class="section-title">New Patient Questionnaire</div>
+
+            <!-- Health Information -->
+            <div class="form-group">
+                <label for="presentSymptoms">Present Symptoms</label>
+                <textarea id="presentSymptoms" name="presentSymptoms"></textarea>
+            </div>
+
+            <!-- Symptom Details -->
+            <div class="form-group">
+                <label for="symptomDetails">Symptom Details</label>
+                <textarea id="symptomDetails" name="symptomDetails" placeholder="e.g., Fever, Fatigue, Pain (specify location), Respiratory Issues, etc."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="symptomDuration">Duration</label>
+                <input type="text" id="symptomDuration" name="symptomDuration" placeholder="e.g., Days, Weeks, Months">
+            </div>
+            <div class="form-group">
+                <label for="symptomSeverity">Severity (1-10)</label>
+                <input type="text" id="symptomSeverity" name="symptomSeverity">
+            </div>
+
+            <!-- Lifestyle Habits -->
+            <div class="section-title">Lifestyle Habits</div>
+            <div class="form-group">
+                <label for="exerciseFrequency">Exercise Frequency</label>
+                <input type="text" id="exerciseFrequency" name="exerciseFrequency">
+            </div>
+            <div class="form-group">
+                <label for="diet">Diet (specify)</label>
+                <input type="text" id="diet" name="diet">
+            </div>
+            <div class="form-group">
+                <label for="sleepPatterns">Sleep Patterns</label>
+                <input type="text" id="sleepPatterns" name="sleepPatterns">
+            </div>
+            <div class="form-group">
+                <label for="stressManagement">Stress Management</label>
+                <input type="text" id="stressManagement" name="stressManagement">
+            </div>
+            <div class="form-group">
+                <label for="substanceUse">Substance Use (e.g., smoking, alcohol)</label>
+                <input type="text" id="substanceUse" name="substanceUse">
+            </div>
+
+            <div class="form-group full-width">
+                <input type="submit" value="Submit">
+                <a href="ehr.html" class="button">Cancel</a>
+            </div>
+            
+            </form>
+        </div>
+    </body>
+    </html>
+    
+
+

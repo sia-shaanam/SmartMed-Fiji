@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicine Appointment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #b1ccfe;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            max-width: 1500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .form-actions {
+            grid-column: span 3;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-actions input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .form-actions input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Create Telemedicine Appointment</h2>
+    <form action="process_telemedicine_form.php" method="POST">
+        <div class="form-group">
+            <div>
+                <label for="appointment_id">Appointment ID:</label>
+                <input type="text" id="appointment_id" name="appointment_id" required>
+            </div>
+            <div>
+                <label for="doctor_id">Doctor ID:</label>
+                <input type="text" id="doctor_id" name="doctor_id" required>
+            </div>
+            <div>
+                <label for="doctor_name">Doctor Name:</label>
+                <input type="text" id="doctor_name" name="doctor_name" required>
+            </div>
+            <div>
+                <label for="patient_id">Patient ID:</label>
+                <input type="text" id="patient_id" name="patient_id" required>
+            </div>
+       
+            <div>
+                <label for="patient_age">Patient Age:</label>
+                <input type="number" id="patient_age" name="patient_age" min="0">
+            </div>
+            <div>
+                <label for="diagnosis">Diagnosis:</label>
+                <textarea id="diagnosis" name="diagnosis" rows="3"></textarea>
+            </div>
+            <div>
+                <label for="appointment_date">Appointment Date:</label>
+                <input type="date" id="appointment_date" name="appointment_date" required>
+            </div>
+            <div>
+                <label for="appointment_time">Appointment Time:</label>
+                <input type="time" id="appointment_time" name="appointment_time" required>
+            </div>
+            <div>
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+            <div>
+                <label for="video_call_link">Video Call Link:</label>
+                <input type="url" id="video_call_link" name="video_call_link">
+            </div>
+            <div>
+                <label for="reminder_datetime">Reminder DateTime:</label>
+                <input type="datetime-local" id="reminder_datetime" name="reminder_datetime">
+            </div>
+            <div>
+                <label for="reminder_note">Reminder Note:</label>
+                <textarea id="reminder_note" name="reminder_note" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Save Appointment">
+        </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Update Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 45%;
+        }
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input, .form-group select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+        .form-group input[type="number"] {
+            max-width: 100px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttons .cancel-btn {
+            background-color: #dc3545;
+        }
+        .buttons button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Update Doctor Information</h2>
+    <form action="update_doctor.php" method="POST">
+        <div class="form-group">
+            <label for="doctor_id">Doctor ID</label>
+            <input type="text" id="doctor_id" name="doctor_id" required readonly>
+        </div>
+        <div class="form-group">
+            <label for="name">Doctor's Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="specialization">Specialization</label>
+            <input type="text" id="specialization" name="specialization">
+        </div>
+        <div class="form-group">
+            <label for="contact_information">Contact Information</label>
+            <input type="text" id="contact_information" name="contact_information" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" name="department">
+        </div>
+        <div class="form-group">
+            <label for="job_position">Job Position</label>
+            <input type="text" id="job_position" name="job_position">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="0">
+        </div>
+
+        <div class="buttons">
+            <button type="submit">Save</button>
+            <button type="button" class="cancel-btn" onclick="window.location.href='../doc_dash.php';">Cancel</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+

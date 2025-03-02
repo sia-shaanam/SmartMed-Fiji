@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Smart Med Fiji | Smart Med Fiji</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__header">
+        <div class="nav__logo">
+          <a href="#" class="logo">Smart Med Fiji</a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#service">SERVICE</a></li>
+        <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#meet">MEET PROFESSIONALS</a></li>
+        <li><a href="#contact">CONTACT</a></li> 
+      </ul>
+      
+   
+      </ul>
+      <div class="nav__btns">
+        <a href="back_login/login.html">
+        <button class="btn">My Dashboard</button></a>
+      </div>
+    </nav>
+
+    <header id="home">
+      <div class="header__container">
+        <div class="header__content">
+          <p>Welcome to Smart Med Fiji</p>
+          <h1>Building Gaps With Tech</h1>
+          <div class="header__btns">
+           <button class="btn"  onclick="showModal()">Book appointment</button>
+           
+          </div>
+        </div>
+
+       <!-- Modal Structure -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h3>Please sign`in to book an appointment.</h3>
+          <a href="#" onclick="handleAction('back_login/login.html')"><button class="btn">Sign In</button></a>
+          <div id="spinner" class="loading-spinner"></div>
+      </div>
+  </div>
+
+
+        <div class="header__image">
+          <img src="assets/pic1-removebg.png" alt="header" />
+        </div>
+      </div>
+    </header>
+
+    <section class="section__container serve__container" id="service">
+      <h2 class="section__header">OUR SERVICE</h2>
+      <p class="section__description">
+        Get to experience our amazing service without a need for travel.
+      </p>
+      <div class="serve__grid">
+        <div class="serve__list-item">
+          <img src="assets/consultation.jpg" alt="Online Consultation">
+          <div class="serve__list-details">
+            <h4>Online Consultation</h4>
+            <p>We recognize the rising demand for telemedicine services or medical services that can be accessed remotely. With that, we offer online medical consultations with our Primary Care and Specialty Doctors.</p>
+            <div class="serve__type">
+              <span><i class="ri-stethoscope-fill"></i></span>
+              Telemedicine
+            </div>
+          </div>
+        </div>
+        
+        <div class="serve__list-item">
+          <img src="assets/ehr.jpg" alt="Online Medical Report">
+          <div class="serve__list-details">
+            <h4>Online Medical Report</h4>
+            <p>Used by medical professionals for documenting a patient’s medical treatment. Have your report on your mobile phone now!</p>
+            <div class="serve__type">
+              <span><i class="ri-stethoscope-fill"></i></span>
+              EHR
+            </div>
+          </div>
+        </div>
+    
+        <div class="serve__list-item">
+          <img src="assets/op2.png" alt="Online Appointment">
+          <div class="serve__list-details">
+            <h4>Online Appointment</h4>
+            <p>Online appointment scheduling provides patients with a portal to book an appointment online and enables doctors to track and manage those appointments.</p>
+            <div class="serve__type">
+              <span><i class="ri-stethoscope-fill"></i></span>
+              Appointment
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+   
+    <section class="section__container about__container" id="about">
+      <h2 class="section__header">About Us</h2>
+      <div class="about__flex-container">
+        <div class="about__description">
+          <p>
+            SmartMed Fiji aims to enhance patient care through digital solutions like the Patient Tracking System. Our platform bridges the gap between patients and healthcare practitioners, especially in underserved areas, ensuring quality healthcare with modern technology.
+          </p>
+        </div>
+        <div class="about__image">
+          <img src="assets/about.jpg" alt="About" />
+        </div>
+      </div>
+      <div class="about__grid">
+        <div class="about__item">
+          <span class="about__icon"><i class="ri-user-heart-line"></i></span>
+          <h4>Patient Track</h4>
+          <p>
+            Smart Med Fiji provides seamless access to your medical history, empowering patients to manage their health effectively.
+          </p>
+        </div>
+        <div class="about__item">
+          <span class="about__icon"><i class="ri-hourglass-line"></i></span>
+          <h4>Saves Your Time</h4>
+          <p>
+            Access healthcare anytime, anywhere. Save time by eliminating the need for travel or waiting rooms.
+          </p>
+        </div>
+        <div class="about__item">
+          <span class="about__icon"><i class="ri-cpu-line"></i></span>
+          <h4>Research and Development</h4>
+          <p>
+            We leverage cutting-edge technology to advance medical practices, ensuring you receive the best care possible.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+
+    
+    <section class="section__container meet__container" id="meet">
+      <h2 class="section__header">Meet Our Proffesionals</h2>
+      <p class="section__description">
+        Providing you the best medical care ever
+      </p>
+      <div class="meet__grid">
+        <div class="meet__card">
+          <img src="assets/cg.webp" alt="meet" />
+          <h4>Dr Christian Grey (Cardiologist)</h4>
+          <p>
+            Specialised in the diagnosis and treatment of conditions of heart. 
+          </p>
+        </div>
+        <div class="meet__card">
+          <img src="assets/as.jpg" alt="meet" />
+          <h4>Dr Ana Steele (gynecologist)</h4>
+          <p>
+            specializes in female reproductive health.
+          </p>
+          
+        </div>
+        <div class="meet__card">
+          <img src="assets/lc1.webp" alt="meet" />
+          <h4>Dr Lee Chang (psychiatrist)</h4>
+          <p>
+            medical doctor who specializes in mental health
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="review" class="review">
+      <h2 class="section__header">Thoughts of our Patients</h2>
+      <p class="section__description">
+        Your say matters to us!!
+      </p>
+      
+
+      <div class="box-container">
+
+          <!-- start here  -->
+          <div class="box">
+              
+              <p>"I had an exceptional experience at Smart Med Fiji. The staff was incredibly professional and compassionate. Dr. Christian Grey took the time to listen to my concerns and provided excellent care. I felt safe and well taken care of throughout my treatment. Highly recommend!"
+
+              </p>
+
+              <div class="images">
+                  <img src="assets/rev1.jpg" alt="review">
+
+                  <div class="info">
+                      <h3>Sia</h3>
+                      <span>date :30th september</span>
+                  </div>
+              </div>
+          </div>
+          <!-- end here  -->
+
+          
+          <!-- start here  -->
+          <div class="box">
+              
+              <p>"I can't believe how easy it is to access my medical history with Smart Med Fiji! The online platform allows me to view all my past consultations, treatments, and prescriptions with just a few clicks. This transparency gives me peace of mind and helps me stay informed about my health. It's incredibly convenient, especially during follow-up appointments. I highly recommend Smart Med Fiji for anyone looking for seamless access to their medical records!"</p>
+
+              <div class="images">
+                  <img src="assets/rev2m.png" alt="review">
+
+                  <div class="info">
+                      <h3>Clark Benson</h3>
+                      <span>date : 4th july</span>
+                  </div>
+              </div>
+          </div>
+          <!-- end here  -->
+
+          
+          <!-- start here  -->
+          <div class="box">
+              
+              <p>"I'm so grateful for Smart Med Fiji's online services. Dr. Lee Chang's expertise in mental health during our virtual sessions was invaluable. The entire online team was supportive and made me feel comfortable. I appreciate how accessible their services are, making it easy for anyone to receive the care they need. Truly a wonderful place for online healthcare!"</p>
+
+              <div class="images">
+                  <img src="assets/rev3.jpg" alt="review">
+
+                  <div class="info">
+                      <h3>Mansha</h3>
+                      <span>date :6th aug</span>
+                  </div>
+              </div>
+          </div>
+          <!-- end here  -->
+      </div>
+  </section>
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <h2 class="section__header">Contact Us</h2>
+
+
+  <div class="contact-container">
+    <h1>Our Contact Details:</h1>
+    <div class="contact-content">
+      <div class="contact-form">
+        
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <p><i class="fas fa-phone"></i> Phone: +6796500382</p>
+          <p><i class="fas fa-envelope"></i> Email: contactus@smartmedfiji.com</p>
+        </div>
+        <!-- Social Media Links with Icons -->
+        <div class="social-media">
+          <h3>Follow Us Now</h3>
+          <a href="https://facebook.com" target="_blank">
+            <img src="assets/fb.jpg" alt="Facebook"> Facebook
+          </a>
+          <a href="https://twitter.com" target="_blank">
+            <img src="assets/twit.webp" alt="Twitter"> Twitter
+          </a>
+          <a href="https://linkedin.com" target="_blank">
+            <img src= "assets/link.jpg"alt="LinkedIn"> LinkedIn
+          </a>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3792.3805694580064!2d178.47685667389356!3d-18.10020848291363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6e1be082a4000b95%3A0xeccf2c865650b74b!2sFiji%20National%20University%20-%20Nasinu%20Campus!5e0!3m2!1sen!2sus!4v1727705034067!5m2!1sen!2sus"  style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer">
+  <div class="footer-container">
+    <p>&copy; 2024 Smart Med Fiji. All Rights Reserved.</p>
+    <p>Designed by [code crushes]</p>
+  </div>
+</footer>
+
+<script>
+ // Function to show the modal
+        function showModal() {
+            document.getElementById('loginModal').style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('loginModal').style.display = "none";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('loginModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Function to handle sign-in/register action
+        function handleAction(url) {
+            document.getElementById('spinner').style.display = "block"; // Show loading spinner
+            setTimeout(function() {
+                window.location.href = url; // Redirect to login or register after 2 seconds
+            }, 2000); // Simulates loading time (you can remove this delay for actual redirection)
+        }
+</script>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

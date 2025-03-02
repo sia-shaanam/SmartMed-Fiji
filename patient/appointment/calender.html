@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Appointments</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <style>
+    #calendar {
+      max-width: 900px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let calendarEl = document.getElementById('calendar');
+      let patientId = 1;  // Example patient_id for testing
+
+      let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: function (fetchInfo, successCallback, failureCallback) {
+          fetch(`get_appointments.php?patient_id=${patientId}`)
+            .then(response => response.json())
+            .then(data => successCallback(data))
+            .catch(error => failureCallback(error));
+        },
+        selectable: true,
+        select: function (info) {
+          let appointmentDate = info.startStr;
+          let doctorId = prompt("Enter Doctor ID for Appointment:");
+          if (doctorId) {
+            fetch('book_appointment.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                patient_id: patientId,
+                doctor_id: doctorId,
+                appointment_date: appointmentDate
+              })
+            }).then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                  alert('Appointment booked!');
+                  calendar.refetchEvents();
+                } else {
+                  alert('Error: ' + data.message);
+                }
+              });
+          }
+        },
+      });
+
+      calendar.render();
+    });
+  </script>
+</body>
+</html>

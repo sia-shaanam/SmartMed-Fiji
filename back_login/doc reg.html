@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Details UI Enhancements</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    /* Card Section */
+    .patient-card {
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      margin: 20px auto;
+      width: 60%;
+    }
+
+    .avatar {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+    }
+
+    h2 {
+      color: #007bff;
+    }
+
+    /* Dropdown Menu */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #20c997;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 8px;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #148f6a;
+    }
+
+    /* Toast Notification */
+    .toast {
+      visibility: hidden;
+      max-width: 50%;
+      margin-left: -25%;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      font-size: 17px;
+    }
+
+    .toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @keyframes fadein {
+      from {bottom: 0; opacity: 0;}
+      to {bottom: 30px; opacity: 1;}
+    }
+
+    @keyframes fadeout {
+      from {bottom: 30px; opacity: 1;}
+      to {bottom: 0; opacity: 0;}
+    }
+
+    /* Search Bar */
+    .search-bar {
+      width: 100%;
+      padding: 10px;
+      margin: 20px 0;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    /* Collapsible Sections */
+    .collapsible {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 18px;
+      transition: background-color 0.2s;
+    }
+
+    .collapsible:hover {
+      background-color: #0056b3;
+    }
+
+    .content {
+      display: none;
+      padding: 10px 15px;
+      background-color: #f1f1f1;
+    }
+
+    /* Floating Action Button */
+    .fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 50%;
+      padding: 20px;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    .fab:hover {
+      background-color: #0056b3;
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Details Table */
+    .details-table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+
+    .details-table th, .details-table td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+
+    .details-table th {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Patient Card -->
+  <div class="patient-card">
+    <img src="https://via.placeholder.com/150" alt="Patient Avatar" class="avatar">
+    <h2>Raj Yadav</h2>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown">
+      <button class="dropbtn">Actions</button>
+      <div class="dropdown-content">
+        <a href="#">View Medical Records</a>
+        <a href="#">Edit Patient Details</a>
+        <a href="#">Send Notification</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <input type="text" id="searchInput" onkeyup="filterRecords()" placeholder="Search for records..." class="search-bar">
+
+  <!-- Patient Table -->
+  <table id="patientTable" class="details-table">
+    <tr>
+      <th>Patient ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Condition</th>
+    </tr>
+    <tr>
+      <td>1001</td>
+      <td>Raj Yadav</td>
+      <td>30</td>
+      <td>Diabetes</td>
+    </tr>
+    <tr>
+      <td>1002</td>
+      <td>Anita Sharma</td>
+      <td>45</td>
+      <td>Hypertension</td>
+    </tr>
+  </table>
+
+  <!-- Collapsible Section -->
+  <button class="collapsible">Medical History</button>
+  <div class="content">
+    <p>Past medical records of the patient go here...</p>
+  </div>
+
+  <!-- Chart Section -->
+  <canvas id="healthChart"></canvas>
+
+  <!-- Floating Action Button -->
+  <a href="#addPatient" class="fab"><i class="fas fa-plus"></i></a>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Patient details updated successfully!</div>
+
+  <script>
+    // Chart.js Script
+    var ctx = document.getElementById('healthChart').getContext('2d');
+    var healthChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'Weight (lbs)',
+          data: [180, 175, 178, 182, 180, 185],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    });
+
+    // Collapsible Sections
+    var coll = document.getElementsByClassName("collapsible");
+    for (var i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+
+    function filterRecords() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("patientTable");
+        tr = table.getElementsByTagName("tr");
+    
+        for (i = 1; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
+
+</body>
+</html>

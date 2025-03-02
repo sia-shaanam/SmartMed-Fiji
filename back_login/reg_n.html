@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nurse Registration</title>
+</head>
+<body>
+    <h2>Nurse Registration Form</h2>
+    <form action="register_nurse.php" method="POST">
+        <label for="nurse_id">Nurse ID:</label><br>
+        <input type="text" id="nurse_id" name="nurse_id" required><br><br>
+        
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="contact_information">Contact Information:</label><br>
+        <input type="text" id="contact_information" name="contact_information"><br><br>
+        
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
