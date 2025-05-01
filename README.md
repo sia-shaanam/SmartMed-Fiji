@@ -15,6 +15,8 @@ I built this system with my team to address challenges in managing patient data 
 - Share information securely across departments
 - Generate analytical reports for better decision-making
 
+![image](https://github.com/user-attachments/assets/20492ab9-651a-4021-b085-636ea25a57bd)
+
 
 ---
 
